@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengkel Jaya | Data Sparepart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Bengkel Jaya</h1>
+            <p>Sistem Informasi Manajemen Bengkel</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-heading">
+            <div>
+                <h2>Data Sparepart</h2>
+                <p>Kelola persediaan sparepart bengkel.</p>
+            </div>
+            <button id="refreshButton" type="button">Muat Ulang</button>
+        </section>
+
+        <p id="statusMessage" role="status">Memuat data sparepart...</p>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Nama Sparepart</th>
+                        <th>Kategori</th>
+                        <th>Merk</th>
+                        <th>Harga Beli</th>
+                        <th>Harga Jual</th>
+                        <th>Stok</th>
+                        <th>Satuan</th>
+                    </tr>
+                </thead>
+                <tbody id="sparepartTable">
+                    <tr>
+                        <td colspan="8">Memuat data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="container footer">
+        <p>&copy; 2026 Bengkel Jaya</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

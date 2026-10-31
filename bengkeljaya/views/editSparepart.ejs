@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Sparepart</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 24px;
+            background: #f5f7fa;
+            color: #1f2937;
+        }
+        h1 { font-size: 1.4rem; margin: 0 0 16px; }
+        form {
+            max-width: 480px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+        }
+        label {
+            display: block;
+            margin-top: 14px;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+        label:first-of-type { margin-top: 0; }
+        input {
+            width: 100%;
+            margin-top: 5px;
+            padding: 8px 10px;
+            font-size: .95rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, .15);
+        }
+        button {
+            margin-top: 18px;
+            padding: 9px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #1d4ed8;
+            color: #fff;
+            font-size: .95rem;
+            cursor: pointer;
+        }
+        button:hover { background: #1e40af; }
+        .back {
+            display: inline-block;
+            margin-top: 16px;
+            color: #1d4ed8;
+            font-size: .9rem;
+            text-decoration: none;
+        }
+        .back:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Edit Sparepart</h1>
+
+    <form action="/edit/<%= sparepart.id_sparepart %>" method="POST">
+        <label>Kode Sparepart:</label>
+        <input type="text" name="kode_sparepart"
+               value="<%= sparepart.kode_sparepart %>" required>
+
+        <label>Nama Sparepart:</label>
+        <input type="text" name="nama_sparepart"
+               value="<%= sparepart.nama_sparepart %>" required>
+
+        <label>Kategori:</label>
+        <input type="text" name="kategori"
+               value="<%= sparepart.kategori %>" required>
+
+        <label>Merk:</label>
+        <input type="text" name="merk"
+               value="<%= sparepart.merk %>" required>
+
+        <label>Harga Beli:</label>
+        <input type="number" name="harga_beli" min="0" step="0.01"
+               value="<%= sparepart.harga_beli %>" required>
+
+        <label>Harga Jual:</label>
+        <input type="number" name="harga_jual" min="0" step="0.01"
+               value="<%= sparepart.harga_jual %>" required>
+
+        <label>Stok:</label>
+        <input type="number" name="stok" min="0"
+               value="<%= sparepart.stok %>" required>
+
+        <label>Satuan:</label>
+        <input type="text" name="satuan"
+               value="<%= sparepart.satuan %>" required>
+
+        <button type="submit">Simpan Perubahan</button>
+    </form>
+
+    <a class="back" href="/">Kembali ke Daftar Sparepart</a>
+</body>
+</html>
