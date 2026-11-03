@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengkel Jaya | Data Sparepart</title>
+    <title>Bengkel Jaya | Manajemen Data</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,34 +14,48 @@
         </div>
     </header>
 
+    <nav class="nav-tabs container">
+        <button class="tab-button active" data-entity="sparepart" type="button">Sparepart</button>
+        <button class="tab-button" data-entity="karyawan" type="button">Karyawan</button>
+        <button class="tab-button" data-entity="pelanggan" type="button">Pelanggan</button>
+    </nav>
+
     <main class="container">
         <section class="page-heading">
             <div>
-                <h2>Data Sparepart</h2>
-                <p>Kelola persediaan sparepart bengkel.</p>
+                <h2 id="pageTitle">Data Sparepart</h2>
+                <p id="pageSubtitle">Kelola persediaan sparepart bengkel.</p>
             </div>
-            <button id="refreshButton" type="button">Muat Ulang</button>
+            <div class="heading-actions">
+                <button id="refreshButton" type="button" class="btn-secondary">Muat Ulang</button>
+                <button id="addButton" type="button">+ Tambah Data</button>
+            </div>
         </section>
 
-        <p id="statusMessage" role="status">Memuat data sparepart...</p>
+        <p id="statusMessage" role="status">Memuat data...</p>
 
+        <!-- Form tambah / ubah -->
+        <section id="formCard" class="form-card hidden">
+            <div class="form-card-header">
+                <h3 id="formTitle">Tambah Data</h3>
+                <button id="closeFormButton" type="button" class="btn-close">&times;</button>
+            </div>
+            <form id="dataForm">
+                <div id="formFields" class="form-grid"></div>
+                <div class="form-actions">
+                    <button type="submit" id="submitButton">Simpan</button>
+                    <button type="button" id="cancelButton" class="btn-secondary">Batal</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Tabel data -->
         <div class="table-wrapper">
             <table>
-                <thead>
+                <thead id="tableHead"></thead>
+                <tbody id="tableBody">
                     <tr>
-                        <th>Kode</th>
-                        <th>Nama Sparepart</th>
-                        <th>Kategori</th>
-                        <th>Merk</th>
-                        <th>Harga Beli</th>
-                        <th>Harga Jual</th>
-                        <th>Stok</th>
-                        <th>Satuan</th>
-                    </tr>
-                </thead>
-                <tbody id="sparepartTable">
-                    <tr>
-                        <td colspan="8">Memuat data...</td>
+                        <td colspan="9">Memuat data...</td>
                     </tr>
                 </tbody>
             </table>

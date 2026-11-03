@@ -32,6 +32,42 @@ body {
     color: #6b7280;
 }
 
+/* ================================
+   TAB MENU
+=============================== */
+.nav-tabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0;
+}
+
+.tab-button {
+    padding: 12px 20px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 8px 8px 0 0;
+    background: transparent;
+    color: #6b7280;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tab-button:hover {
+    background: #eef2f7;
+    color: #1f2937;
+}
+
+.tab-button.active {
+    color: #176b52;
+    border-bottom-color: #176b52;
+    background: #ffffff;
+}
+
+/* ================================
+   HEADING HALAMAN
+=============================== */
 .page-heading {
     display: flex;
     align-items: center;
@@ -43,6 +79,11 @@ body {
 .page-heading h2 {
     margin: 0 0 8px;
     font-size: 24px;
+}
+
+.heading-actions {
+    display: flex;
+    gap: 10px;
 }
 
 button {
@@ -59,10 +100,125 @@ button:hover {
     background: #12543f;
 }
 
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+/* ================================
+   STATUS PESAN
+=============================== */
 #statusMessage {
+    color: #6b7280;
+    margin: 0 0 16px;
+}
+
+.status-success {
+    color: #176b52;
+}
+
+.status-error {
+    color: #b91c1c;
+}
+
+.status-info {
     color: #6b7280;
 }
 
+/* ================================
+   FORM TAMBAH / UBAH
+=============================== */
+.hidden {
+    display: none;
+}
+
+.form-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.form-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.form-card-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.btn-close {
+    background: transparent;
+    color: #6b7280;
+    font-size: 24px;
+    line-height: 1;
+    padding: 4px 10px;
+}
+
+.btn-close:hover {
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    outline: 2px solid #176b52;
+    border-color: #176b52;
+}
+
+.form-group input:disabled {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* ================================
+   TABEL
+=============================== */
 .table-wrapper {
     overflow-x: auto;
     background: #ffffff;
@@ -93,12 +249,58 @@ tbody tr:hover {
     background: #f9fafb;
 }
 
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.empty-cell {
+    text-align: center;
+    color: #9ca3af;
+    padding: 32px 16px;
+}
+
+/* ================================
+   TOMBOL AKSI DI TABEL
+=============================== */
+.action-cell {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 7px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+.btn-edit {
+    background: #d97706;
+}
+
+.btn-edit:hover {
+    background: #b45309;
+}
+
+.btn-delete {
+    background: #dc2626;
+}
+
+.btn-delete:hover {
+    background: #b91c1c;
+}
+
+/* ================================
+   FOOTER
+=============================== */
 .footer {
     padding: 24px 0;
     color: #6b7280;
     font-size: 13px;
 }
 
+/* ================================
+   RESPONSIVE
+=============================== */
 @media (max-width: 600px) {
     .page-heading {
         align-items: flex-start;
@@ -107,5 +309,17 @@ tbody tr:hover {
 
     .header h1 {
         font-size: 24px;
+    }
+
+    .nav-tabs {
+        overflow-x: auto;
+    }
+
+    .heading-actions {
+        width: 100%;
+    }
+
+    .heading-actions button {
+        flex: 1;
     }
 }
