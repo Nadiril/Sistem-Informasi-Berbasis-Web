@@ -77,7 +77,7 @@ const refreshButton = document.getElementById('refreshButton');
 const addButton = document.getElementById('addButton');
 const pageTitle = document.getElementById('pageTitle');
 const pageSubtitle = document.getElementById('pageSubtitle');
-const formCard = document.getElementById('formCard');
+const formModal = document.getElementById('formModal');
 const formTitle = document.getElementById('formTitle');
 const dataForm = document.getElementById('dataForm');
 const formFields = document.getElementById('formFields');
@@ -248,8 +248,11 @@ function openForm(item = null) {
 
     formTitle.textContent = editingKode ? 'Ubah Data' : 'Tambah Data';
     submitButton.textContent = editingKode ? 'Simpan Perubahan' : 'Simpan';
-    formCard.classList.remove('hidden');
-    formCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    formModal.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+
+    // Bangun input form sesuai entitas aktif
+    buildForm();
 
     // Kosongkan semua input dulu
     dataForm.reset();
@@ -275,7 +278,8 @@ function openForm(item = null) {
 }
 
 function closeForm() {
-    formCard.classList.add('hidden');
+    formModal.classList.add('hidden');
+    document.body.classList.remove('modal-open');
     editingKode = null;
     dataForm.reset();
 }
@@ -362,7 +366,18 @@ async function deleteRow(item) {
 /* ================================
    GANTI TAB
 =============================== */
-function switchEntity(entity) {
+// Baca entitas dari URL (#sparepart, #karyawan, #pelanggan).
+// Hash tidak dikenal / kosong -> kembali ke sparepart.
+function entityFromHash() {
+    const name = decodeURIComponent(location.hash.replace(/^#\/?/, '')).toLowerCase();
+    return Object.prototype.hasOwnProperty.call(entities, name) ? name : 'sparepart';
+}
+
+function switchEntity(entity, updateUrl = true) {
+    if (!Object.prototype.hasOwnProperty.call(entities, entity)) {
+        entity = 'sparepart';
+    }
+
     currentEntity = entity;
     editingKode = null;
     closeForm();
@@ -375,6 +390,14 @@ function switchEntity(entity) {
         btn.classList.toggle('active', btn.dataset.entity === entity);
     });
 
+    // Sinkronkan URL dengan tab aktif
+    if (updateUrl) {
+        const hash = `#${entity}`;
+        if (location.hash !== hash) {
+            history.pushState(null, '', hash);
+        }
+    }
+
     renderTableHead();
     loadData();
 }
@@ -386,14 +409,39 @@ tabButtons.forEach((btn) => {
     btn.addEventListener('click', () => switchEntity(btn.dataset.entity));
 });
 
+// Tombol back / forward browser ikut mengganti tab
+window.addEventListener('popstate', () => {
+    const entity = entityFromHash();
+    if (entity !== currentEntity) {
+        switchEntity(entity, false);
+    }
+});
+
 refreshButton.addEventListener('click', loadData);
 addButton.addEventListener('click', () => openForm());
 cancelButton.addEventListener('click', closeForm);
 closeFormButton.addEventListener('click', closeForm);
 dataForm.addEventListener('submit', submitForm);
 
+// Klik area gelap di luar modal untuk menutup
+formModal.addEventListener('click', (event) => {
+    if (event.target === formModal) closeForm();
+});
+
+// Tekan Esc untuk menutup modal
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !formModal.classList.contains('hidden')) {
+        closeForm();
+    }
+});
+
 /* ================================
    MULAI
 =============================== */
-renderTableHead();
-loadData();
+// Tab awal mengikuti hash di URL agar bisa di-bookmark / dibuka langsung
+const initialEntity = entityFromHash();
+if (location.hash !== `#${initialEntity}`) {
+    history.replaceState(null, '', `#${initialEntity}`);
+}
+
+switchEntity(initialEntity, false);

@@ -34,20 +34,22 @@
 
         <p id="statusMessage" role="status">Memuat data...</p>
 
-        <!-- Form tambah / ubah -->
-        <section id="formCard" class="form-card hidden">
-            <div class="form-card-header">
-                <h3 id="formTitle">Tambah Data</h3>
-                <button id="closeFormButton" type="button" class="btn-close">&times;</button>
-            </div>
-            <form id="dataForm">
-                <div id="formFields" class="form-grid"></div>
-                <div class="form-actions">
-                    <button type="submit" id="submitButton">Simpan</button>
-                    <button type="button" id="cancelButton" class="btn-secondary">Batal</button>
+        <!-- Modal tambah / ubah -->
+        <div id="formModal" class="modal-overlay hidden">
+            <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+                <div class="form-card-header">
+                    <h3 id="formTitle">Tambah Data</h3>
+                    <button id="closeFormButton" type="button" class="btn-close" aria-label="Tutup">&times;</button>
                 </div>
-            </form>
-        </section>
+                <form id="dataForm">
+                    <div id="formFields" class="form-grid"></div>
+                    <div class="form-actions">
+                        <button type="submit" id="submitButton">Simpan</button>
+                        <button type="button" id="cancelButton" class="btn-secondary">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <!-- Tabel data -->
         <div class="table-wrapper">
